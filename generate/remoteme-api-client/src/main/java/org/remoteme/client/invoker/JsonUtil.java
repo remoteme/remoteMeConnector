@@ -63,6 +63,10 @@ public class JsonUtil {
       return new TypeToken<List<DeviceDto>>(){}.getType();
     }
     
+    if ("DeviceFullDto".equalsIgnoreCase(className)) {
+      return new TypeToken<List<DeviceFullDto>>(){}.getType();
+    }
+    
     if ("HelloDto".equalsIgnoreCase(className)) {
       return new TypeToken<List<HelloDto>>(){}.getType();
     }
@@ -215,6 +219,10 @@ public class JsonUtil {
     
     if ("DeviceDto".equalsIgnoreCase(className)) {
       return new TypeToken<DeviceDto>(){}.getType();
+    }
+    
+    if ("DeviceFullDto".equalsIgnoreCase(className)) {
+      return new TypeToken<DeviceFullDto>(){}.getType();
     }
     
     if ("HelloDto".equalsIgnoreCase(className)) {

@@ -22,7 +22,6 @@ import java.util.*;
 
 import org.remoteme.client.model.VariableDto;
 import org.remoteme.client.model.VariableSchedulerDto;
-import org.remoteme.client.model.VariableSchedulerEntityDto;
 
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 
@@ -30,7 +29,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.io.File;
 
-public class ArliterestvariablesApi {
+public class ArvariablesrestApi {
   String basePath = "https://app.remoteme.org";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
@@ -59,19 +58,19 @@ public class ArliterestvariablesApi {
    * @param aRLiteToken generated token
    * @return VariableSchedulerDto
    */
-  public VariableSchedulerDto  addScheduler (VariableSchedulerDto variableSchedulerDto, String variableName, String variableType, String aRLiteToken) throws ApiException {
+  public VariableSchedulerDto  addSchedulerUsingPOST (VariableSchedulerDto variableSchedulerDto, String variableName, String variableType, String aRLiteToken) throws ApiException {
     Object localVarPostBody = variableSchedulerDto;
     // verify the required parameter 'variableSchedulerDto' is set
     if (variableSchedulerDto == null) {
-       throw new ApiException(400, "Missing the required parameter 'variableSchedulerDto' when calling addScheduler");
+       throw new ApiException(400, "Missing the required parameter 'variableSchedulerDto' when calling addSchedulerUsingPOST");
     }
     // verify the required parameter 'variableName' is set
     if (variableName == null) {
-       throw new ApiException(400, "Missing the required parameter 'variableName' when calling addScheduler");
+       throw new ApiException(400, "Missing the required parameter 'variableName' when calling addSchedulerUsingPOST");
     }
     // verify the required parameter 'variableType' is set
     if (variableType == null) {
-       throw new ApiException(400, "Missing the required parameter 'variableType' when calling addScheduler");
+       throw new ApiException(400, "Missing the required parameter 'variableType' when calling addSchedulerUsingPOST");
     }
 
     // create path and map variables
@@ -121,11 +120,11 @@ public class ArliterestvariablesApi {
    * @param aRLiteToken generated token
    * @return VariableDto
    */
-  public VariableDto  createVariable (VariableDto v, String aRLiteToken) throws ApiException {
+  public VariableDto  createVariableUsingPOST (VariableDto v, String aRLiteToken) throws ApiException {
     Object localVarPostBody = v;
     // verify the required parameter 'v' is set
     if (v == null) {
-       throw new ApiException(400, "Missing the required parameter 'v' when calling createVariable");
+       throw new ApiException(400, "Missing the required parameter 'v' when calling createVariableUsingPOST");
     }
 
     // create path and map variables
@@ -169,198 +168,31 @@ public class ArliterestvariablesApi {
     }
   }
   /**
-   * add new Scheduler
-   * update VariableScheduler
-   * @param schedulerId schedulerId
-   * @param aRLiteToken generated token
-   * @return Object
-   */
-  public Object  deleteScheduler (Integer schedulerId, String aRLiteToken) throws ApiException {
-    Object localVarPostBody = null;
-    // verify the required parameter 'schedulerId' is set
-    if (schedulerId == null) {
-       throw new ApiException(400, "Missing the required parameter 'schedulerId' when calling deleteScheduler");
-    }
-
-    // create path and map variables
-    String localVarPath = "/arLite/rest/v1/variables/schedulers/{schedulerId}/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "schedulerId" + "\\}", apiInvoker.escapeString(schedulerId.toString()));
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> localVarFormParams = new HashMap<String, String>();
-
-
-    localVarHeaderParams.put("ARLiteToken", ApiInvoker.parameterToString(aRLiteToken));
-
-    String[] localVarContentTypes = {
-      
-    };
-    String localVarContentType = localVarContentTypes.length > 0 ? localVarContentTypes[0] : "application/json";
-
-    if (localVarContentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-
-      localVarPostBody = localVarBuilder.build();
-    } else {
-      // normal form params
-          }
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
-      if(localVarResponse != null){
-        return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
-      }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
-  }
-  /**
-   * delete variable
-   * return rmeoved variable
-   * @param variableName variableName
-   * @param variableType variableType
-   * @param aRLiteToken generated token
-   * @return VariableDto
-   */
-  public VariableDto  deleteVariable (String variableName, String variableType, String aRLiteToken) throws ApiException {
-    Object localVarPostBody = null;
-    // verify the required parameter 'variableName' is set
-    if (variableName == null) {
-       throw new ApiException(400, "Missing the required parameter 'variableName' when calling deleteVariable");
-    }
-    // verify the required parameter 'variableType' is set
-    if (variableType == null) {
-       throw new ApiException(400, "Missing the required parameter 'variableType' when calling deleteVariable");
-    }
-
-    // create path and map variables
-    String localVarPath = "/arLite/rest/v1/variables/{variableName}/{variableType}/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "variableName" + "\\}", apiInvoker.escapeString(variableName.toString())).replaceAll("\\{" + "variableType" + "\\}", apiInvoker.escapeString(variableType.toString()));
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> localVarFormParams = new HashMap<String, String>();
-
-
-    localVarHeaderParams.put("ARLiteToken", ApiInvoker.parameterToString(aRLiteToken));
-
-    String[] localVarContentTypes = {
-      
-    };
-    String localVarContentType = localVarContentTypes.length > 0 ? localVarContentTypes[0] : "application/json";
-
-    if (localVarContentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-
-      localVarPostBody = localVarBuilder.build();
-    } else {
-      // normal form params
-          }
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
-      if(localVarResponse != null){
-        return (VariableDto) ApiInvoker.deserialize(localVarResponse, "", VariableDto.class);
-      }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
-  }
-  /**
    * get schedulers for variable
    * Get schedulers for variable
+   * @param variableType variableType
+   * @param type Variable type
    * @param variableName Variable name
-   * @param variableType Variable type
    * @param aRLiteToken generated token
-   * @return List<VariableSchedulerEntityDto>
+   * @return List<VariableSchedulerDto>
    */
-  public List<VariableSchedulerEntityDto>  getSchedulers (String variableName, String variableType, String aRLiteToken) throws ApiException {
+  public List<VariableSchedulerDto>  getSchedulersUsingGET (String variableType, String type, String variableName, String aRLiteToken) throws ApiException {
     Object localVarPostBody = null;
-    // verify the required parameter 'variableName' is set
-    if (variableName == null) {
-       throw new ApiException(400, "Missing the required parameter 'variableName' when calling getSchedulers");
-    }
     // verify the required parameter 'variableType' is set
     if (variableType == null) {
-       throw new ApiException(400, "Missing the required parameter 'variableType' when calling getSchedulers");
-    }
-
-    // create path and map variables
-    String localVarPath = "/arLite/rest/v1/variables/{variableName}/{variableType}/schedulers/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "variableName" + "\\}", apiInvoker.escapeString(variableName.toString())).replaceAll("\\{" + "variableType" + "\\}", apiInvoker.escapeString(variableType.toString()));
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> localVarFormParams = new HashMap<String, String>();
-
-
-    localVarHeaderParams.put("ARLiteToken", ApiInvoker.parameterToString(aRLiteToken));
-
-    String[] localVarContentTypes = {
-      
-    };
-    String localVarContentType = localVarContentTypes.length > 0 ? localVarContentTypes[0] : "application/json";
-
-    if (localVarContentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-
-      localVarPostBody = localVarBuilder.build();
-    } else {
-      // normal form params
-          }
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
-      if(localVarResponse != null){
-        return (List<VariableSchedulerEntityDto>) ApiInvoker.deserialize(localVarResponse, "array", VariableSchedulerEntityDto.class);
-      }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
-  }
-  /**
-   * get Variables text format value 
-   * 
-   * @param name name
-   * @param type type
-   * @param aRLiteToken generated token
-   * @return String
-   */
-  public String  getVariableTextValue (String name, String type, String aRLiteToken) throws ApiException {
-    Object localVarPostBody = null;
-    // verify the required parameter 'name' is set
-    if (name == null) {
-       throw new ApiException(400, "Missing the required parameter 'name' when calling getVariableTextValue");
+       throw new ApiException(400, "Missing the required parameter 'variableType' when calling getSchedulersUsingGET");
     }
     // verify the required parameter 'type' is set
     if (type == null) {
-       throw new ApiException(400, "Missing the required parameter 'type' when calling getVariableTextValue");
+       throw new ApiException(400, "Missing the required parameter 'type' when calling getSchedulersUsingGET");
+    }
+    // verify the required parameter 'variableName' is set
+    if (variableName == null) {
+       throw new ApiException(400, "Missing the required parameter 'variableName' when calling getSchedulersUsingGET");
     }
 
     // create path and map variables
-    String localVarPath = "/arLite/rest/v1/getVariableTextValue/{name}/{type}/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "name" + "\\}", apiInvoker.escapeString(name.toString())).replaceAll("\\{" + "type" + "\\}", apiInvoker.escapeString(type.toString()));
+    String localVarPath = "/arLite/rest/v1/variables/{variableName}/{variableType}/schedulers/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "variableType" + "\\}", apiInvoker.escapeString(variableType.toString())).replaceAll("\\{" + "type" + "\\}", apiInvoker.escapeString(type.toString())).replaceAll("\\{" + "variableName" + "\\}", apiInvoker.escapeString(variableName.toString()));
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -390,7 +222,7 @@ public class ArliterestvariablesApi {
     try {
       String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
       if(localVarResponse != null){
-        return (String) ApiInvoker.deserialize(localVarResponse, "", String.class);
+        return (List<VariableSchedulerDto>) ApiInvoker.deserialize(localVarResponse, "array", VariableSchedulerDto.class);
       }
       else {
         return null;
@@ -400,12 +232,12 @@ public class ArliterestvariablesApi {
     }
   }
   /**
-   * getVariables
-   * 
+   * get all local variables
+   * If network device created WEbSocketServer for local connection it will return localIP and port othervise null is return
    * @param aRLiteToken generated token
    * @return List<VariableDto>
    */
-  public List<VariableDto>  getVariables (String aRLiteToken) throws ApiException {
+  public List<VariableDto>  getVariablesUsingGET (String aRLiteToken) throws ApiException {
     Object localVarPostBody = null;
 
     // create path and map variables
@@ -449,31 +281,21 @@ public class ArliterestvariablesApi {
     }
   }
   /**
-   * set Variable value using string format
-   * 
-   * @param value value
-   * @param name name
-   * @param type type
+   * add new Scheduler
+   * update VariableScheduler
+   * @param schedulerId schedulerId
    * @param aRLiteToken generated token
-   * @return void
+   * @return Object
    */
-  public void  setVariableTextValue (String value, String name, String type, String aRLiteToken) throws ApiException {
-    Object localVarPostBody = value;
-    // verify the required parameter 'value' is set
-    if (value == null) {
-       throw new ApiException(400, "Missing the required parameter 'value' when calling setVariableTextValue");
-    }
-    // verify the required parameter 'name' is set
-    if (name == null) {
-       throw new ApiException(400, "Missing the required parameter 'name' when calling setVariableTextValue");
-    }
-    // verify the required parameter 'type' is set
-    if (type == null) {
-       throw new ApiException(400, "Missing the required parameter 'type' when calling setVariableTextValue");
+  public Object  removeSchedulerUsingDELETE (Integer schedulerId, String aRLiteToken) throws ApiException {
+    Object localVarPostBody = null;
+    // verify the required parameter 'schedulerId' is set
+    if (schedulerId == null) {
+       throw new ApiException(400, "Missing the required parameter 'schedulerId' when calling removeSchedulerUsingDELETE");
     }
 
     // create path and map variables
-    String localVarPath = "/arLite/rest/v1/setVariableTextValue/{name}/{type}/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "name" + "\\}", apiInvoker.escapeString(name.toString())).replaceAll("\\{" + "type" + "\\}", apiInvoker.escapeString(type.toString()));
+    String localVarPath = "/arLite/rest/v1/variables/schedulers/{schedulerId}/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "schedulerId" + "\\}", apiInvoker.escapeString(schedulerId.toString()));
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -486,7 +308,7 @@ public class ArliterestvariablesApi {
     localVarHeaderParams.put("ARLiteToken", ApiInvoker.parameterToString(aRLiteToken));
 
     String[] localVarContentTypes = {
-      "application/json"
+      
     };
     String localVarContentType = localVarContentTypes.length > 0 ? localVarContentTypes[0] : "application/json";
 
@@ -501,38 +323,92 @@ public class ArliterestvariablesApi {
           }
 
     try {
-      String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
+      String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
       if(localVarResponse != null){
-        return ;
+        return (Object) ApiInvoker.deserialize(localVarResponse, "", Object.class);
       }
       else {
-        return ;
+        return null;
       }
     } catch (ApiException ex) {
       throw ex;
     }
   }
   /**
-   * updateScheduler
-   * 
-   * @param variableSchedulerDto variableSchedulerDto
-   * @param schedulerId schedulerId
+   * remove variable
+   * return rmeoved variable
+   * @param variableName variableName
+   * @param variableType variableType
    * @param aRLiteToken generated token
-   * @return Object
+   * @return VariableDto
    */
-  public Object  updateScheduler (VariableSchedulerDto variableSchedulerDto, Integer schedulerId, String aRLiteToken) throws ApiException {
-    Object localVarPostBody = variableSchedulerDto;
-    // verify the required parameter 'variableSchedulerDto' is set
-    if (variableSchedulerDto == null) {
-       throw new ApiException(400, "Missing the required parameter 'variableSchedulerDto' when calling updateScheduler");
+  public VariableDto  removeVariableUsingDELETE (String variableName, String variableType, String aRLiteToken) throws ApiException {
+    Object localVarPostBody = null;
+    // verify the required parameter 'variableName' is set
+    if (variableName == null) {
+       throw new ApiException(400, "Missing the required parameter 'variableName' when calling removeVariableUsingDELETE");
     }
-    // verify the required parameter 'schedulerId' is set
-    if (schedulerId == null) {
-       throw new ApiException(400, "Missing the required parameter 'schedulerId' when calling updateScheduler");
+    // verify the required parameter 'variableType' is set
+    if (variableType == null) {
+       throw new ApiException(400, "Missing the required parameter 'variableType' when calling removeVariableUsingDELETE");
     }
 
     // create path and map variables
-    String localVarPath = "/arLite/rest/v1/variables/schedulers/{schedulerId}/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "schedulerId" + "\\}", apiInvoker.escapeString(schedulerId.toString()));
+    String localVarPath = "/arLite/rest/v1/variables/{variableName}/{variableType}/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "variableName" + "\\}", apiInvoker.escapeString(variableName.toString())).replaceAll("\\{" + "variableType" + "\\}", apiInvoker.escapeString(variableType.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> localVarFormParams = new HashMap<String, String>();
+
+
+    localVarHeaderParams.put("ARLiteToken", ApiInvoker.parameterToString(aRLiteToken));
+
+    String[] localVarContentTypes = {
+      
+    };
+    String localVarContentType = localVarContentTypes.length > 0 ? localVarContentTypes[0] : "application/json";
+
+    if (localVarContentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      localVarPostBody = localVarBuilder.build();
+    } else {
+      // normal form params
+          }
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
+      if(localVarResponse != null){
+        return (VariableDto) ApiInvoker.deserialize(localVarResponse, "", VariableDto.class);
+      }
+      else {
+        return null;
+      }
+    } catch (ApiException ex) {
+      throw ex;
+    }
+  }
+  /**
+   * add new Scheduler
+   * update VariableScheduler
+   * @param variableSchedulerDto variableSchedulerDto
+   * @param aRLiteToken generated token
+   * @return Object
+   */
+  public Object  updateSchedulerUsingPUT (VariableSchedulerDto variableSchedulerDto, String aRLiteToken) throws ApiException {
+    Object localVarPostBody = variableSchedulerDto;
+    // verify the required parameter 'variableSchedulerDto' is set
+    if (variableSchedulerDto == null) {
+       throw new ApiException(400, "Missing the required parameter 'variableSchedulerDto' when calling updateSchedulerUsingPUT");
+    }
+
+    // create path and map variables
+    String localVarPath = "/arLite/rest/v1/variables/schedulers/".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -572,27 +448,27 @@ public class ArliterestvariablesApi {
     }
   }
   /**
-   * update variable name and/or properties
-   * it find variable by given name and type and updated based on variableDto - ot does not update type!
-   * @param variableDto variableDto
+   * update variables
+   * the variable type
    * @param variableName variableName
    * @param variableType variableType
+   * @param v v
    * @param aRLiteToken generated token
    * @return VariableDto
    */
-  public VariableDto  updateVariable (VariableDto variableDto, String variableName, String variableType, String aRLiteToken) throws ApiException {
-    Object localVarPostBody = variableDto;
-    // verify the required parameter 'variableDto' is set
-    if (variableDto == null) {
-       throw new ApiException(400, "Missing the required parameter 'variableDto' when calling updateVariable");
-    }
+  public VariableDto  updateVariableUsingPUT (String variableName, String variableType, VariableDto v, String aRLiteToken) throws ApiException {
+    Object localVarPostBody = v;
     // verify the required parameter 'variableName' is set
     if (variableName == null) {
-       throw new ApiException(400, "Missing the required parameter 'variableName' when calling updateVariable");
+       throw new ApiException(400, "Missing the required parameter 'variableName' when calling updateVariableUsingPUT");
     }
     // verify the required parameter 'variableType' is set
     if (variableType == null) {
-       throw new ApiException(400, "Missing the required parameter 'variableType' when calling updateVariable");
+       throw new ApiException(400, "Missing the required parameter 'variableType' when calling updateVariableUsingPUT");
+    }
+    // verify the required parameter 'v' is set
+    if (v == null) {
+       throw new ApiException(400, "Missing the required parameter 'v' when calling updateVariableUsingPUT");
     }
 
     // create path and map variables

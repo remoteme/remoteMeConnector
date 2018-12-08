@@ -64,12 +64,14 @@ public class ArliterestApiExample {
 
     public static void main(String[] args) {
         ArliterestApi apiInstance = new ArliterestApi();
+        String username = "username_example"; // String | username
+        String password = "password_example"; // String | password
         String aRLiteToken = "aRLiteToken_example"; // String | generated token
         try {
-            List<DeviceDto> result = apiInstance.getDevices(aRLiteToken);
+            ARTokenDto result = apiInstance.getPartnerToken(username, password, aRLiteToken);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling ArliterestApi#getDevices");
+            System.err.println("Exception when calling ArliterestApi#getPartnerToken");
             e.printStackTrace();
         }
     }
@@ -79,19 +81,23 @@ public class ArliterestApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://127.0.0.1:8082*
+All URIs are relative to *https://app.remoteme.org*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ArliterestApi* | [**getDevices**](docs/ArliterestApi.md#getDevices) | **GET** /arLite/rest/v1/getAllDevices/ | getDevices
 *ArliterestApi* | [**getPartnerToken**](docs/ArliterestApi.md#getPartnerToken) | **GET** /arLite/rest/v1/getToken/ | generateToken
 *ArliterestApi* | [**hello**](docs/ArliterestApi.md#hello) | **GET** /arLite/rest/v1/hello/{name}/ | hello
 *ArliterestApi* | [**logout**](docs/ArliterestApi.md#logout) | **GET** /arLite/rest/v1/logout/ | clears session
-*ArliterestApi* | [**register**](docs/ArliterestApi.md#register) | **POST** /arLite/rest/v1/register/ | Register
-*ArliterestApi* | [**registerEr**](docs/ArliterestApi.md#registerEr) | **POST** /arLite/rest/v1/registerEr/ | Register
 *ArliterestApi* | [**sendMessage**](docs/ArliterestApi.md#sendMessage) | **PUT** /arLite/rest/v1/sendMessage/ | sendMessage
 *ArliterestApi* | [**throwError**](docs/ArliterestApi.md#throwError) | **GET** /arLite/rest/v1/throwError/ | throwError
-*ArliterestApi* | [**updateMessageToken**](docs/ArliterestApi.md#updateMessageToken) | **PUT** /arLite/rest/v1/addMessageToken/{deviceId}/{messageToken}/ | updateMessageToken
+*ArliterestdevicesApi* | [**createArduinoDevice**](docs/ArliterestdevicesApi.md#createArduinoDevice) | **POST** /arLite/rest/v1/device/arduino/ | createArduinoDevice
+*ArliterestdevicesApi* | [**createRasbperryPiDevice**](docs/ArliterestdevicesApi.md#createRasbperryPiDevice) | **POST** /arLite/rest/v1/device/rasbperryPi/ | createRasbperryPiDevice
+*ArliterestdevicesApi* | [**createWebpageDevice**](docs/ArliterestdevicesApi.md#createWebpageDevice) | **POST** /arLite/rest/v1/device/webPage/ | createWebpageDevice
+*ArliterestdevicesApi* | [**getDevices**](docs/ArliterestdevicesApi.md#getDevices) | **GET** /arLite/rest/v1/getAllDevices/ | getDevices
+*ArliterestdevicesApi* | [**isDeviceConnected**](docs/ArliterestdevicesApi.md#isDeviceConnected) | **GET** /arLite/rest/v1/device/{deviceId}/connected/ | isDeviceConnected
+*ArliterestdevicesApi* | [**register**](docs/ArliterestdevicesApi.md#register) | **POST** /arLite/rest/v1/register/ | Register
+*ArliterestdevicesApi* | [**registerEr**](docs/ArliterestdevicesApi.md#registerEr) | **POST** /arLite/rest/v1/registerEr/ | Register
+*ArliterestdevicesApi* | [**updateMessageToken**](docs/ArliterestdevicesApi.md#updateMessageToken) | **PUT** /arLite/rest/v1/addMessageToken/{deviceId}/{messageToken}/ | updateMessageToken
 *ArliterestexampleApi* | [**getMessageTypeUsingPOST**](docs/ArliterestexampleApi.md#getMessageTypeUsingPOST) | **POST** /arLite/restExample/v1/getMessageType/ | getMessageType
 *ArliterestexampleApi* | [**getUserMessageUsingGET**](docs/ArliterestexampleApi.md#getUserMessageUsingGET) | **GET** /arLite/restExample/v1/getUserMessage/ | getUserMessage
 *ArliterestmessagesApi* | [**sendMessage1**](docs/ArliterestmessagesApi.md#sendMessage1) | **PUT** /arLite/restExample/v1/message/send/bytes/ | send message
@@ -136,6 +142,7 @@ Class | Method | HTTP request | Description
  - [AndroidRegisterDto](docs/AndroidRegisterDto.md)
  - [DataSeries](docs/DataSeries.md)
  - [DeviceDto](docs/DeviceDto.md)
+ - [DeviceFullDto](docs/DeviceFullDto.md)
  - [HelloDto](docs/HelloDto.md)
  - [PlainResultDto](docs/PlainResultDto.md)
  - [RegisterDto](docs/RegisterDto.md)

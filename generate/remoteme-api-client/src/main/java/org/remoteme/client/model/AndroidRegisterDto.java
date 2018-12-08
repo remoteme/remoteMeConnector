@@ -14,8 +14,9 @@ public class AndroidRegisterDto  {
   private String smartPhoneId = null;
 
   /**
+   * Nice name will be display in device manager
    **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Nice name will be display in device manager")
   public String getNiceName() {
     return niceName;
   }
@@ -24,8 +25,9 @@ public class AndroidRegisterDto  {
   }
 
   /**
+   * Unique deviceId
    **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Unique deviceId")
   public String getSmartPhoneId() {
     return smartPhoneId;
   }

@@ -37,17 +37,25 @@ public class ApiTest {
 	protected static ArliterestpartnerApi getPartnerApi() {
 		if (partnerApi==null) {
 			partnerApi = new ArliterestpartnerApi();
-			partnerApi.setBasePath(partnerApi.getBasePath().replaceAll("https://app.remmoteme.org/", "http://127.0.0.1:8082/"));
+			if (isDev()){
+				partnerApi.setBasePath(partnerApi.getBasePath().replaceAll("https://app.remmoteme.org/", "http://127.0.0.1:8082/"));
+			}
 			partnerApi.setBasePath(partnerApi.getBasePath().replaceAll("https://", "http://"));
 		}
 		return partnerApi;
 	}
 
+	protected static boolean isDev() {
+		return false;
+	}
+
 	protected static ArliterestvariablesApi getVariableApi() {
 		if (variableApi==null) {
 			variableApi = new ArliterestvariablesApi();
-			variableApi.setBasePath(partnerApi.getBasePath().replaceAll("https://app.remmoteme.org/", "http://127.0.0.1:8082/"));
-			variableApi.setBasePath(partnerApi.getBasePath().replaceAll("https://", "http://"));
+			if (isDev()) {
+				variableApi.setBasePath(variableApi.getBasePath().replaceAll("https://app.remmoteme.org/", "http://127.0.0.1:8082/"));
+			}
+			variableApi.setBasePath(variableApi.getBasePath().replaceAll("https://", "http://"));
 		}
 		return variableApi;
 	}
@@ -55,8 +63,10 @@ public class ApiTest {
 	protected static ArliterestApi getRestApi() {
 		if (restApi==null){
 			restApi = new ArliterestApi();
-			restApi.setBasePath(restApi.getBasePath().replaceAll("https://app.remmoteme.org/","http://127.0.0.1:8082/"));
-			restApi.setBasePath(restApi.getBasePath().replaceAll("https://","http://"));
+			if (isDev()) {
+				restApi.setBasePath(restApi.getBasePath().replaceAll("https://app.remmoteme.org/", "http://127.0.0.1:8082/"));
+			}
+			restApi.setBasePath(restApi.getBasePath().replaceAll("https://", "http://"));
 		}
 
 		return restApi;
@@ -67,9 +77,10 @@ public class ApiTest {
 		protected static ArliterestuserApi getUserApi(boolean createNew) {
 		if (userApi==null || createNew){
 			userApi = new ArliterestuserApi();
-			userApi.setBasePath(userApi.getBasePath().replaceAll("https://app.remmoteme.org/","http://127.0.0.1:8082/"));
-			userApi.setBasePath(userApi.getBasePath().replaceAll("https://","http://"));
-
+			if (isDev()) {
+				userApi.setBasePath(userApi.getBasePath().replaceAll("https://app.remmoteme.org/", "http://127.0.0.1:8082/"));
+			}
+			userApi.setBasePath(userApi.getBasePath().replaceAll("https://", "http://"));
 		}
 
 		return userApi;

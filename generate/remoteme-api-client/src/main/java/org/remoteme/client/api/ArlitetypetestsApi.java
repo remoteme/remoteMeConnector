@@ -34,7 +34,7 @@ import java.util.HashMap;
 import java.io.File;
 
 public class ArlitetypetestsApi {
-  String basePath = "https://127.0.0.1:8082";
+  String basePath = "https://app.remoteme.org";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
   public void addHeader(String key, String value) {

@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.io.File;
 
-public class ArliterestmessagesApi {
+public class ArmessagesrestApi {
   String basePath = "https://app.remoteme.org";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
@@ -56,15 +56,15 @@ public class ArliterestmessagesApi {
    * @param aRLiteToken generated token
    * @return void
    */
-  public void  sendMessage1 (byte[] message, String byteArrayARemoteMeMessageToSend_, String aRLiteToken) throws ApiException {
+  public void  sendMessageUsingPUT2 (byte[] message, String byteArrayARemoteMeMessageToSend_, String aRLiteToken) throws ApiException {
     Object localVarPostBody = byteArrayARemoteMeMessageToSend_;
     // verify the required parameter 'message' is set
     if (message == null) {
-       throw new ApiException(400, "Missing the required parameter 'message' when calling sendMessage1");
+       throw new ApiException(400, "Missing the required parameter 'message' when calling sendMessageUsingPUT2");
     }
     // verify the required parameter 'byteArrayARemoteMeMessageToSend_' is set
     if (byteArrayARemoteMeMessageToSend_ == null) {
-       throw new ApiException(400, "Missing the required parameter 'byteArrayARemoteMeMessageToSend_' when calling sendMessage1");
+       throw new ApiException(400, "Missing the required parameter 'byteArrayARemoteMeMessageToSend_' when calling sendMessageUsingPUT2");
     }
 
     // create path and map variables
@@ -115,15 +115,15 @@ public class ArliterestmessagesApi {
    * @param aRLiteToken generated token
    * @return void
    */
-  public void  sendMessage2 (AMessage message, String jsonAMessageToSend, String aRLiteToken) throws ApiException {
+  public void  sendMessageUsingPUT3 (AMessage message, String jsonAMessageToSend, String aRLiteToken) throws ApiException {
     Object localVarPostBody = jsonAMessageToSend;
     // verify the required parameter 'message' is set
     if (message == null) {
-       throw new ApiException(400, "Missing the required parameter 'message' when calling sendMessage2");
+       throw new ApiException(400, "Missing the required parameter 'message' when calling sendMessageUsingPUT3");
     }
     // verify the required parameter 'jsonAMessageToSend' is set
     if (jsonAMessageToSend == null) {
-       throw new ApiException(400, "Missing the required parameter 'jsonAMessageToSend' when calling sendMessage2");
+       throw new ApiException(400, "Missing the required parameter 'jsonAMessageToSend' when calling sendMessageUsingPUT3");
     }
 
     // create path and map variables

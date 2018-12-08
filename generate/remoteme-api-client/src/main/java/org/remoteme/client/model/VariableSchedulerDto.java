@@ -16,14 +16,19 @@ public class VariableSchedulerDto  {
   };
   @SerializedName("mode")
   private ModeEnum mode = null;
+  @SerializedName("nextTimeRun")
+  private Long nextTimeRun = null;
   @SerializedName("time")
   private String time = null;
   @SerializedName("values")
   private List<String> values = null;
+  @SerializedName("variableSchedulerId")
+  private Integer variableSchedulerId = null;
 
   /**
+   * M H D Y check user interface to more help
    **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "M H D Y check user interface to more help")
   public String getCron() {
     return cron;
   }
@@ -39,6 +44,17 @@ public class VariableSchedulerDto  {
   }
   public void setMode(ModeEnum mode) {
     this.mode = mode;
+  }
+
+  /**
+   * Its null if variable is non active
+   **/
+  @ApiModelProperty(value = "Its null if variable is non active")
+  public Long getNextTimeRun() {
+    return nextTimeRun;
+  }
+  public void setNextTimeRun(Long nextTimeRun) {
+    this.nextTimeRun = nextTimeRun;
   }
 
   /**
@@ -61,6 +77,16 @@ public class VariableSchedulerDto  {
     this.values = values;
   }
 
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Integer getVariableSchedulerId() {
+    return variableSchedulerId;
+  }
+  public void setVariableSchedulerId(Integer variableSchedulerId) {
+    this.variableSchedulerId = variableSchedulerId;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -73,8 +99,10 @@ public class VariableSchedulerDto  {
     VariableSchedulerDto variableSchedulerDto = (VariableSchedulerDto) o;
     return (this.cron == null ? variableSchedulerDto.cron == null : this.cron.equals(variableSchedulerDto.cron)) &&
         (this.mode == null ? variableSchedulerDto.mode == null : this.mode.equals(variableSchedulerDto.mode)) &&
+        (this.nextTimeRun == null ? variableSchedulerDto.nextTimeRun == null : this.nextTimeRun.equals(variableSchedulerDto.nextTimeRun)) &&
         (this.time == null ? variableSchedulerDto.time == null : this.time.equals(variableSchedulerDto.time)) &&
-        (this.values == null ? variableSchedulerDto.values == null : this.values.equals(variableSchedulerDto.values));
+        (this.values == null ? variableSchedulerDto.values == null : this.values.equals(variableSchedulerDto.values)) &&
+        (this.variableSchedulerId == null ? variableSchedulerDto.variableSchedulerId == null : this.variableSchedulerId.equals(variableSchedulerDto.variableSchedulerId));
   }
 
   @Override
@@ -82,8 +110,10 @@ public class VariableSchedulerDto  {
     int result = 17;
     result = 31 * result + (this.cron == null ? 0: this.cron.hashCode());
     result = 31 * result + (this.mode == null ? 0: this.mode.hashCode());
+    result = 31 * result + (this.nextTimeRun == null ? 0: this.nextTimeRun.hashCode());
     result = 31 * result + (this.time == null ? 0: this.time.hashCode());
     result = 31 * result + (this.values == null ? 0: this.values.hashCode());
+    result = 31 * result + (this.variableSchedulerId == null ? 0: this.variableSchedulerId.hashCode());
     return result;
   }
 
@@ -94,8 +124,10 @@ public class VariableSchedulerDto  {
     
     sb.append("  cron: ").append(cron).append("\n");
     sb.append("  mode: ").append(mode).append("\n");
+    sb.append("  nextTimeRun: ").append(nextTimeRun).append("\n");
     sb.append("  time: ").append(time).append("\n");
     sb.append("  values: ").append(values).append("\n");
+    sb.append("  variableSchedulerId: ").append(variableSchedulerId).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

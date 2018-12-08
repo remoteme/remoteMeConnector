@@ -1,15 +1,24 @@
 package org.remoteme.client.model;
 
+import java.util.*;
+import org.remoteme.client.model.DeviceFullDto;
 
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
 
 @ApiModel(description = "")
-public class DeviceDto  {
+public class DeviceFullDto  {
   
   @SerializedName("active")
   private Boolean active = null;
+  @SerializedName("childs")
+  private List<DeviceFullDto> childs = null;
+  public enum ConnectedEnum {
+     CONNECTED,  NOT_CONNECTED,  NA, 
+  };
+  @SerializedName("connected")
+  private ConnectedEnum connected = null;
   @SerializedName("deviceId")
   private Integer deviceId = null;
   @SerializedName("name")
@@ -28,6 +37,26 @@ public class DeviceDto  {
   }
   public void setActive(Boolean active) {
     this.active = active;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public List<DeviceFullDto> getChilds() {
+    return childs;
+  }
+  public void setChilds(List<DeviceFullDto> childs) {
+    this.childs = childs;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public ConnectedEnum getConnected() {
+    return connected;
+  }
+  public void setConnected(ConnectedEnum connected) {
+    this.connected = connected;
   }
 
   /**
@@ -69,17 +98,21 @@ public class DeviceDto  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceDto deviceDto = (DeviceDto) o;
-    return (this.active == null ? deviceDto.active == null : this.active.equals(deviceDto.active)) &&
-        (this.deviceId == null ? deviceDto.deviceId == null : this.deviceId.equals(deviceDto.deviceId)) &&
-        (this.name == null ? deviceDto.name == null : this.name.equals(deviceDto.name)) &&
-        (this.type == null ? deviceDto.type == null : this.type.equals(deviceDto.type));
+    DeviceFullDto deviceFullDto = (DeviceFullDto) o;
+    return (this.active == null ? deviceFullDto.active == null : this.active.equals(deviceFullDto.active)) &&
+        (this.childs == null ? deviceFullDto.childs == null : this.childs.equals(deviceFullDto.childs)) &&
+        (this.connected == null ? deviceFullDto.connected == null : this.connected.equals(deviceFullDto.connected)) &&
+        (this.deviceId == null ? deviceFullDto.deviceId == null : this.deviceId.equals(deviceFullDto.deviceId)) &&
+        (this.name == null ? deviceFullDto.name == null : this.name.equals(deviceFullDto.name)) &&
+        (this.type == null ? deviceFullDto.type == null : this.type.equals(deviceFullDto.type));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
     result = 31 * result + (this.active == null ? 0: this.active.hashCode());
+    result = 31 * result + (this.childs == null ? 0: this.childs.hashCode());
+    result = 31 * result + (this.connected == null ? 0: this.connected.hashCode());
     result = 31 * result + (this.deviceId == null ? 0: this.deviceId.hashCode());
     result = 31 * result + (this.name == null ? 0: this.name.hashCode());
     result = 31 * result + (this.type == null ? 0: this.type.hashCode());
@@ -89,9 +122,11 @@ public class DeviceDto  {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceDto {\n");
+    sb.append("class DeviceFullDto {\n");
     
     sb.append("  active: ").append(active).append("\n");
+    sb.append("  childs: ").append(childs).append("\n");
+    sb.append("  connected: ").append(connected).append("\n");
     sb.append("  deviceId: ").append(deviceId).append("\n");
     sb.append("  name: ").append(name).append("\n");
     sb.append("  type: ").append(type).append("\n");

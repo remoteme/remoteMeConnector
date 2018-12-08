@@ -26,8 +26,9 @@ public class VariableSchedulerEntityDto  {
   private Integer variableSchedulerId = null;
 
   /**
+   * M H D Y check user interface to more help
    **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "M H D Y check user interface to more help")
   public String getCron() {
     return cron;
   }

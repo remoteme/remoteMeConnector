@@ -22,11 +22,8 @@ import java.util.*;
 
 import org.remoteme.client.model.AMessage;
 import org.remoteme.client.model.ARTokenDto;
-import org.remoteme.client.model.AndroidRegisterDto;
-import org.remoteme.client.model.DeviceDto;
 import org.remoteme.client.model.HelloDto;
 import org.remoteme.client.model.PlainResultDto;
-import org.remoteme.client.model.RegisterDto;
 import org.remoteme.client.model.StandardResponse;
 
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -36,7 +33,7 @@ import java.util.HashMap;
 import java.io.File;
 
 public class ArliterestApi {
-  String basePath = "https://127.0.0.1:8082";
+  String basePath = "https://app.remoteme.org";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
 
   public void addHeader(String key, String value) {
@@ -55,55 +52,6 @@ public class ArliterestApi {
     return basePath;
   }
 
-  /**
-   * getDevices
-   * 
-   * @param aRLiteToken generated token
-   * @return List<DeviceDto>
-   */
-  public List<DeviceDto>  getDevices (String aRLiteToken) throws ApiException {
-    Object localVarPostBody = null;
-
-    // create path and map variables
-    String localVarPath = "/arLite/rest/v1/getAllDevices/".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> localVarFormParams = new HashMap<String, String>();
-
-
-    localVarHeaderParams.put("ARLiteToken", ApiInvoker.parameterToString(aRLiteToken));
-
-    String[] localVarContentTypes = {
-      
-    };
-    String localVarContentType = localVarContentTypes.length > 0 ? localVarContentTypes[0] : "application/json";
-
-    if (localVarContentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-
-      localVarPostBody = localVarBuilder.build();
-    } else {
-      // normal form params
-          }
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
-      if(localVarResponse != null){
-        return (List<DeviceDto>) ApiInvoker.deserialize(localVarResponse, "array", DeviceDto.class);
-      }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
-  }
   /**
    * generateToken
    * token can be later use for authorize requests, and websockets, then add it in header as ARLiteToken
@@ -269,114 +217,6 @@ public class ArliterestApi {
     }
   }
   /**
-   * Register
-   * Registers device - return deviceId new or old one
-   * @param registerDto registerDto
-   * @param aRLiteToken generated token
-   * @return RegisterDto
-   */
-  public RegisterDto  register (AndroidRegisterDto registerDto, String aRLiteToken) throws ApiException {
-    Object localVarPostBody = registerDto;
-    // verify the required parameter 'registerDto' is set
-    if (registerDto == null) {
-       throw new ApiException(400, "Missing the required parameter 'registerDto' when calling register");
-    }
-
-    // create path and map variables
-    String localVarPath = "/arLite/rest/v1/register/".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> localVarFormParams = new HashMap<String, String>();
-
-
-    localVarHeaderParams.put("ARLiteToken", ApiInvoker.parameterToString(aRLiteToken));
-
-    String[] localVarContentTypes = {
-      "application/json"
-    };
-    String localVarContentType = localVarContentTypes.length > 0 ? localVarContentTypes[0] : "application/json";
-
-    if (localVarContentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-
-      localVarPostBody = localVarBuilder.build();
-    } else {
-      // normal form params
-          }
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
-      if(localVarResponse != null){
-        return (RegisterDto) ApiInvoker.deserialize(localVarResponse, "", RegisterDto.class);
-      }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
-  }
-  /**
-   * Register
-   * Registers device - return deviceId new or old one
-   * @param registerDto registerDto
-   * @param aRLiteToken generated token
-   * @return RegisterDto
-   */
-  public RegisterDto  registerEr (AndroidRegisterDto registerDto, String aRLiteToken) throws ApiException {
-    Object localVarPostBody = registerDto;
-    // verify the required parameter 'registerDto' is set
-    if (registerDto == null) {
-       throw new ApiException(400, "Missing the required parameter 'registerDto' when calling registerEr");
-    }
-
-    // create path and map variables
-    String localVarPath = "/arLite/rest/v1/registerEr/".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> localVarFormParams = new HashMap<String, String>();
-
-
-    localVarHeaderParams.put("ARLiteToken", ApiInvoker.parameterToString(aRLiteToken));
-
-    String[] localVarContentTypes = {
-      "application/json"
-    };
-    String localVarContentType = localVarContentTypes.length > 0 ? localVarContentTypes[0] : "application/json";
-
-    if (localVarContentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-
-      localVarPostBody = localVarBuilder.build();
-    } else {
-      // normal form params
-          }
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
-      if(localVarResponse != null){
-        return (RegisterDto) ApiInvoker.deserialize(localVarResponse, "", RegisterDto.class);
-      }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
-  }
-  /**
    * sendMessage
    * 
    * @param messageDto messageDto
@@ -471,65 +311,6 @@ public class ArliterestApi {
       String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
       if(localVarResponse != null){
         return (Integer) ApiInvoker.deserialize(localVarResponse, "", Integer.class);
-      }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
-  }
-  /**
-   * updateMessageToken
-   * 
-   * @param deviceId deviceId
-   * @param messageToken messageToken
-   * @param aRLiteToken generated token
-   * @return StandardResponse
-   */
-  public StandardResponse  updateMessageToken (Integer deviceId, String messageToken, String aRLiteToken) throws ApiException {
-    Object localVarPostBody = null;
-    // verify the required parameter 'deviceId' is set
-    if (deviceId == null) {
-       throw new ApiException(400, "Missing the required parameter 'deviceId' when calling updateMessageToken");
-    }
-    // verify the required parameter 'messageToken' is set
-    if (messageToken == null) {
-       throw new ApiException(400, "Missing the required parameter 'messageToken' when calling updateMessageToken");
-    }
-
-    // create path and map variables
-    String localVarPath = "/arLite/rest/v1/addMessageToken/{deviceId}/{messageToken}/".replaceAll("\\{format\\}","json").replaceAll("\\{" + "deviceId" + "\\}", apiInvoker.escapeString(deviceId.toString())).replaceAll("\\{" + "messageToken" + "\\}", apiInvoker.escapeString(messageToken.toString()));
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    // header params
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    // form params
-    Map<String, String> localVarFormParams = new HashMap<String, String>();
-
-
-    localVarHeaderParams.put("ARLiteToken", ApiInvoker.parameterToString(aRLiteToken));
-
-    String[] localVarContentTypes = {
-      "application/json"
-    };
-    String localVarContentType = localVarContentTypes.length > 0 ? localVarContentTypes[0] : "application/json";
-
-    if (localVarContentType.startsWith("multipart/form-data")) {
-      // file uploading
-      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
-      
-
-      localVarPostBody = localVarBuilder.build();
-    } else {
-      // normal form params
-          }
-
-    try {
-      String localVarResponse = apiInvoker.invokeAPI(basePath, localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarContentType);
-      if(localVarResponse != null){
-        return (StandardResponse) ApiInvoker.deserialize(localVarResponse, "", StandardResponse.class);
       }
       else {
         return null;

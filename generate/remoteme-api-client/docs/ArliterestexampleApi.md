@@ -1,6 +1,6 @@
 # ArliterestexampleApi
 
-All URIs are relative to *https://127.0.0.1:8082*
+All URIs are relative to *https://app.remoteme.org*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
