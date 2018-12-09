@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.mockito.internal.matchers.apachecommons.ReflectionEquals;
 import org.remoteme.client.api.ArliterestApi;
 import org.remoteme.client.api.ArliterestpartnerApi;
+import org.remoteme.client.api.ArliterestvariablesApi;
 import org.remoteme.client.invoker.ApiException;
 import org.remoteme.client.model.VariableDto;
 import org.remoteme.client.model.VariableDto.TypeEnum;
@@ -35,6 +36,18 @@ public class User1Test extends ApiTest {
 		for (VariableDto variable : variables) {
 			System.out.println(variable.getName());
 		}
+	}
+
+	@Test
+	public void testAldrin() throws ApiException {
+		String arToken = "~XFt2FmYgf3dxKTdZpb3CuCZJRTq4Z55FkNSJwQwFry1A64iEvchIs3WTKXezEFh4j";
+		ArliterestvariablesApi f = new ArliterestvariablesApi();
+		VariableDto v = new VariableDto();
+		v.setName("button3");
+		v.setType(TypeEnum.BOOLEAN);
+
+		List<VariableSchedulerEntityDto> schedulers = getVariableApi().getSchedulers(v.getName(), v.getType().toString(), arToken);
+		System.out.println(" Testing: "+ schedulers.get(0).getTime() +" "+schedulers.get(0));
 	}
 
 }

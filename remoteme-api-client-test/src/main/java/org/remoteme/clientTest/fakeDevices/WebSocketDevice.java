@@ -22,30 +22,31 @@ public abstract class WebSocketDevice extends MockDevice {
 
 
 	protected WebSocketSession webSocketSession;
-	private int port;
 
-	public WebSocketDevice(String token,int port,  UserDevice userDevice) {
-		super(token,userDevice);
-		this.port=port;
+	public WebSocketDevice(int deviceId,String token,int port,String host   ) {
+		super(token, deviceId,host, port);
+
 
 	}
 
 
-	protected int getPort(){
-		return port;
-	}
 
 
 
-	protected void connect() throws InterruptedException, ExecutionException, TimeoutException, URISyntaxException {
+	protected void connect() throws InterruptedException, ExecutionException, URISyntaxException {
 		WebSocketClient webSocketClient = new StandardWebSocketClient();
 
 
 		String url = getUrl();
 
 
-		webSocketSession = webSocketClient.doHandshake(getWebSocketHandler(), getHeaders(), new URI(url)).get(10, TimeUnit.SECONDS);
+		try {
+			webSocketSession = webSocketClient.doHandshake(getWebSocketHandler(), getHeaders(), new URI(url)).get(10, TimeUnit.SECONDS);
+		} catch (TimeoutException e) {
+			throw new RuntimeException(e);
+		}
 
+		afterConnect();
 
 	}
 
@@ -65,7 +66,12 @@ public abstract class WebSocketDevice extends MockDevice {
 
 
 	public void disconnect() throws IOException {
-		webSocketSession.close();
+		try {
+			webSocketSession.close();
+		}catch (Exception ex){
+
+		}
+		afterDisconnect();
 	}
 
 	public void sendUserMessageMessage(int deviceId, String hex) {

@@ -47,8 +47,9 @@ public class VariableSchedulerEntityDto  {
   }
 
   /**
+   * Its null if variable is non active
    **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Its null if variable is non active")
   public Long getNextTimeRun() {
     return nextTimeRun;
   }

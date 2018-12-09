@@ -16,13 +16,11 @@ import java.util.Optional;
 public abstract class SocketDevice extends MockDevice{
 
 
-	int port;
 
 	protected Socket clientSocket;
 
-	public SocketDevice(String token,UserDevice userDevice  ,int port) {
-		super(token,userDevice);
-		this.port = port;
+	public SocketDevice(int deviceId, String token, String host, int port) {
+		super(token,deviceId,host, port);
 
 	}
 
@@ -35,10 +33,9 @@ public abstract class SocketDevice extends MockDevice{
 		}
 	}
 	public void connect() throws IOException {
-		clientSocket = new Socket("localhost", port);
+		clientSocket = new Socket(getHost(), getPort());
 		writeAuthMessage();
-		SocketDeviceManager.get().addSocket(this);
-
+		afterConnect();
 	}
 
 	protected abstract void writeAuthMessage() throws IOException;
@@ -74,8 +71,12 @@ public abstract class SocketDevice extends MockDevice{
 
 
 	public void disconnect() throws IOException {
-		clientSocket.close();
-		SocketDeviceManager.get().removeSocket(this);
+		try {
+			clientSocket.close();
+		}catch (Exception ex){
+
+		}
+		afterDisconnect();
 	}
 
 	@Override
@@ -88,7 +89,5 @@ public abstract class SocketDevice extends MockDevice{
 		}
 	}
 
-	public void sendPing() {
-		sendMessage(new PingMessage(getDeviceId()));
-	}
+
 }

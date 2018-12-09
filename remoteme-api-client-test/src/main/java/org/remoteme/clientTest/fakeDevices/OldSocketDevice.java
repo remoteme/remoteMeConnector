@@ -8,8 +8,8 @@ import java.io.IOException;
 public class OldSocketDevice extends SocketDevice{
 
 
-	public OldSocketDevice(String token,UserDevice userDevice   ) {
-		super(token,userDevice,18);
+	public OldSocketDevice(int deviceId,String token,String host   ) {
+		super(deviceId, token, host, 18);
 
 	}
 

@@ -4,8 +4,6 @@ package org.remoteme.clientTest.fakeDevices;
 
 import org.remoteme.utils.messages.v1.core.messages.remoteMe.ARemoteMeMessage;
 import org.remoteme.utils.general.ByteBufferUtils;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationContext;
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketSession;
@@ -16,11 +14,9 @@ import java.nio.ByteBuffer;
 
 
 public class StdWebSocketDevice extends WebSocketDevice {
-	String server;
 
-	public StdWebSocketDevice(String token,String server,int port,UserDevice userDevice ) {
-		super(token,port, userDevice );
-		this.server=server;
+	public StdWebSocketDevice(int deviceId,String token,int port,String host ) {
+		super(deviceId,token,port,host  );
 
 	}
 
@@ -44,7 +40,7 @@ public class StdWebSocketDevice extends WebSocketDevice {
 
 	@Override
 	protected String getUrl() {
-		return "ws://"+server+":"+getPort()+"/api/" + getToken() + "/ws/v1/" +userDevice.getDeviceId() + "/";
+		return "ws://"+ getHost() +":"+getPort()+"/api/" + getToken() + "/ws/v1/" +getDeviceId() + "/";
 
 	}
 

@@ -3,7 +3,6 @@ package org.remoteme.clientTest.fakeDevices;
 
 
 import org.remoteme.utils.messages.v1.core.messages.remoteMe.AuthentificateMessage;
-import org.springframework.context.ApplicationContext;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -11,8 +10,8 @@ import java.io.IOException;
 public class NewSocketDevice extends SocketDevice{
 
 
-	public NewSocketDevice(String token,UserDevice ud  ) {
-		super(token,ud,19);
+	public NewSocketDevice(int deviceId, String token, String host) {
+		super(deviceId, token, host, 19);
 
 	}
 

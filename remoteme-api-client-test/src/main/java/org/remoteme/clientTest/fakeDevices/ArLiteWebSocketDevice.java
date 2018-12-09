@@ -19,14 +19,14 @@ public class ArLiteWebSocketDevice extends WebSocketDevice {
 
 
 
-	public ArLiteWebSocketDevice(String token,int port, UserDevice userDevice  ) {
-		super(token,port,userDevice);
+	public ArLiteWebSocketDevice(int deviceId,String token,int port,String host   ) {
+		super(deviceId,token,port,host);
 	}
 
 
 	@Override
 	protected String getUrl() {
-		return  "ws://127.0.0.1:"+getPort()+"/arLite/"+token+"/ws/v1/" + getDeviceId() + "/";
+		return  "ws://"+getHost()+":"+getPort()+"/arLite/"+token+"/ws/v1/" + getDeviceId() + "/";
 	}
 
 	@Override
